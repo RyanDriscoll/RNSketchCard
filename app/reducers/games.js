@@ -23,13 +23,14 @@ export default function (state = initialState, action) {
 
     case RECEIVE_ROSTERS:
       return Object.assign({}, state, {
-        homeRoster: state.homeRoster.concat(action.home),
-        awayRoster: state.awayRoster.concat(action.away)
+        homeRoster: action.home,
+        awayRoster: action.away
       });
 
     case SELECT_GAME:
       return Object.assign({}, state, {
-        selectedGame: Object.assign({}, action.game)
+        selectedGame: Object.assign({}, action.game),
+        selectedTeam: 'away'
       });
 
     case SELECT_TEAM:

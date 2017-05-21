@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import * as framesReducer from './frames';
-import * as gamesReducer from './games';
+import frames from './frames';
+import games from './games';
+import players from './players';
 
-export default combineReducers(Object.assign(
-  framesReducer,
-  gamesReducer
-));
+export default combineReducers({
+  frames,
+  games,
+  players
+});

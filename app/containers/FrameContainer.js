@@ -127,7 +127,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    images: state.default.images
+    images: state.frames.images
   };
 }
 

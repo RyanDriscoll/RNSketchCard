@@ -42,7 +42,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    games: state.default.games
+    games: state.games.games
   };
 }
 

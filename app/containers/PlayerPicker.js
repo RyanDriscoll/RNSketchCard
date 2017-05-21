@@ -6,7 +6,7 @@ import { Button, StyleSheet, View, Picker } from 'react-native';
 
 var styles = StyleSheet.create({
   picker: {
-    height: 100
+    height: 200
   }
 });
 
@@ -17,17 +17,30 @@ class PlayerPicker extends Component {
       player: {},
       index: 0
     };
+    this.handlePress = this.handlePress.bind(this);
+  }
+
+  handlePress() {
+    this.props.selectPlayer(
+      this.props.selectedTeam,
+      this.props.navigation.state.params.order,
+      this.state.player
+    );
+    this.props.navigation.goBack();
   }
 
   render() {
     const roster = this.props.selectedTeam === 'away'
       ? this.props.awayRoster
       : this.props.homeRoster;
-    return roster.length
-      ? <Picker
-        style={styles.picker}
-        selectedValue={this.state.index}
-        onValueChange={(value) => this.setState({ player: roster[value], index: value })}>
+    return (
+      <View>
+        <Picker
+          style={styles.picker}
+          selectedValue={this.state.index}
+          onValueChange={value =>
+            this.setState({ player: roster[value], index: value })}
+        >
           {roster.map((player, index) => {
             return (
               <Picker.Item
@@ -38,7 +51,12 @@ class PlayerPicker extends Component {
             );
           })}
         </Picker>
-      : null;
+        <Button
+          onPress={this.handlePress}
+          title="ADD PLAYER"
+        />
+      </View>
+    );
   }
 }
 
@@ -48,9 +66,9 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    homeRoster: state.default.homeRoster,
-    awayRoster: state.default.awayRoster,
-    selectedTeam: state.default.selectedTeam
+    homeRoster: state.games.homeRoster,
+    awayRoster: state.games.awayRoster,
+    selectedTeam: state.games.selectedTeam
   };
 }
 

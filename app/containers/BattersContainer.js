@@ -16,15 +16,20 @@ class BattersContainer extends Component {
   render() {
     const { navigate } = this.props.navigation;
     const batters = [];
-    let roster = this.props.selectedTeam === 'away'
-      ? this.props.awayRoster
-      : this.props.homeRoster;
+    // let roster = this.props.selectedTeam === 'away'
+    //   ? this.props.awayRoster
+    //   : this.props.homeRoster;
+    let selectedBatters = this.props.selectedTeam === 'away'
+      ? this.props.awayBatters
+      : this.props.homeBatters;
     for (let i = 1; i <= 9; i++) {
       batters.push(
         <Batter
           order={i}
           key={i}
-          roster={roster}
+          // roster={roster}
+          team={this.props.selectedTeam}
+          batters={selectedBatters[i]}
           navigate={navigate}
         />);
     }
@@ -41,10 +46,13 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
+  console.log('state', state);
   return {
-    homeRoster: state.default.homeRoster,
-    awayRoster: state.default.awayRoster,
-    selectedTeam: state.default.selectedTeam
+    homeRoster: state.games.homeRoster,
+    awayRoster: state.games.awayRoster,
+    selectedTeam: state.games.selectedTeam,
+    homeBatters: state.players.home,
+    awayBatters: state.players.away
   };
 }
 
