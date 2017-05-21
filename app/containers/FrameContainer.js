@@ -14,17 +14,9 @@ import Sketch from 'react-native-sketch';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-    display: 'flex',
     alignItems: 'center'
   },
   imageContainer: {
-    position: 'absolute',
-    top: 20,
-    width: 300,
-    height: 400,
     borderWidth: 2
   }
 });

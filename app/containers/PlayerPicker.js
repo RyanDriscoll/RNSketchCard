@@ -14,10 +14,21 @@ class PlayerPicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      roster: [],
       player: {},
       index: 0
     };
+
+
     this.handlePress = this.handlePress.bind(this);
+  }
+
+  componentDidMount() {
+    const roster = this.props.selectedTeam === 'away'
+      ? this.props.awayRoster
+      : this.props.homeRoster;
+
+    this.setState({ player: roster[0], roster });
   }
 
   handlePress() {
@@ -30,18 +41,16 @@ class PlayerPicker extends Component {
   }
 
   render() {
-    const roster = this.props.selectedTeam === 'away'
-      ? this.props.awayRoster
-      : this.props.homeRoster;
+
     return (
       <View>
         <Picker
           style={styles.picker}
           selectedValue={this.state.index}
           onValueChange={value =>
-            this.setState({ player: roster[value], index: value })}
+            this.setState({ player: this.state.roster[value], index: value })}
         >
-          {roster.map((player, index) => {
+          {this.state.roster.map((player, index) => {
             return (
               <Picker.Item
                 key={player.uniform_number}

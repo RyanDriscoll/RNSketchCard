@@ -2,24 +2,21 @@ import React from 'react';
 import {
   StyleSheet,
   View,
-  Image
+  Image,
+  Dimensions
 } from 'react-native';
+
+const width = Dimensions.get('window').width / 2;
+const height = width / 3 * 4;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     width: '100%',
-    height: '100%',
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'center'
   },
   imageContainer: {
-    position: 'absolute',
-    top: 20,
-    width: 300,
-    height: 400,
-    borderWidth: 2
+    width: '100%',
+    borderWidth: 2,
+    height: height
   }
 });
 
@@ -28,7 +25,7 @@ export default function LayeredImages(props) {
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-        <Image source={require('../../frame.png')} style={{width: '100%'}} />
+        <Image source={require('../../frame.png')} style={{width: '100%', height: '100%'}} />
       </View>
       {
         !!props.images.length && props.images.map((image, i) => {

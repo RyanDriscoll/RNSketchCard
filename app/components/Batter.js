@@ -1,9 +1,12 @@
 import React from 'react';
-import { Button, StyleSheet, View, Text, TouchableHighlight } from 'react-native';
+import { Button, StyleSheet, View, Text, TouchableHighlight, Dimensions } from 'react-native';
 
-var styles = StyleSheet.create({
+const width = Dimensions.get('window').width / 2;
+const height = width / 3 * 4;
+
+const styles = StyleSheet.create({
   order: {
-    height: 100,
+    height: height,
     backgroundColor: 'green',
     borderWidth: 2
   },
@@ -19,10 +22,9 @@ export default function Batter(props) {
       onPress={() => props.navigate('PlayerPicker', { order: props.order })}>
       <View>
       {
-        props.batters && props.batters.map(batter => {
-          console.log(batter);
+        props.batters && props.batters.map((batter, i) => {
           return (
-            <View key={batter.uniform_number} style={{ flexDirection: 'row', justifyContent: 'space-between', height: '33%' }}>
+            <View key={i} style={{ flexDirection: 'row', justifyContent: 'space-between', height: '33%' }}>
               <View style={styles.batter}>
                 <Text>{batter.uniform_number}</Text>
               </View>

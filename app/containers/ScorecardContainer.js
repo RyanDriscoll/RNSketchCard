@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { StackNavigator } from 'react-navigation';
 import { ActionCreators } from '../actions';
 import BattersContainer from './BattersContainer';
+import FramesContainer from './FramesContainer';
 import ToggleTeam from '../components/ToggleTeam';
 
 import { Text, StyleSheet, View, ScrollView } from 'react-native';
@@ -21,7 +22,10 @@ class ScorecardContainer extends Component {
           game={this.props.selectedGame}
           selectTeam={this.props.selectTeam}
         />
-        <BattersContainer navigation={this.props.navigation} />
+        <View style={{ flexDirection: 'row'}}>
+          <BattersContainer navigation={this.props.navigation} />
+          <FramesContainer navigation={this.props.navigation} />
+        </View>
       </ScrollView>
     );
   }

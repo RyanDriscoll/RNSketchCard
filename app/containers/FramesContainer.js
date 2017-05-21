@@ -6,32 +6,32 @@ import { ActionCreators } from '../actions';
 
 import { Text, StyleSheet, View } from 'react-native';
 
-import Batter from '../components/Batter';
+import LayeredImages from '../components/LayeredImages';
 
-class BattersContainer extends Component {
+class FramesContainer extends Component {
   // constructor(props) {
   //   super(props);
   // }
 
   render() {
     const { navigate } = this.props.navigation;
-    const batters = [];
-    let selectedBatters = this.props.selectedTeam === 'away'
-      ? this.props.awayBatters
-      : this.props.homeBatters;
+    const frames = [];
     for (let i = 1; i <= 9; i++) {
-      batters.push(
-        <Batter
+      frames.push(
+        <LayeredImages
+          images={[]}
           order={i}
           key={i}
           team={this.props.selectedTeam}
-          batters={selectedBatters[i]}
           navigate={navigate}
         />);
     }
+
     return (
-      <View style={{ width: '50%' }}>
-        { batters }
+      <View style={{ width: '50%' }} >
+        {
+          frames
+        }
       </View>
     );
   }
@@ -51,4 +51,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BattersContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(FramesContainer);
