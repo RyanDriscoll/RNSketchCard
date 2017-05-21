@@ -1,31 +1,21 @@
 import React from 'react';
-import { Button, StyleSheet, View, Picker } from 'react-native';
+import { Button, StyleSheet, View, Text, TouchableHighlight } from 'react-native';
 
 var styles = StyleSheet.create({
-  picker: {
+  batter: {
     height: 100,
+    backgroundColor: 'green'
   },
 });
 
 export default function Batter(props) {
 
-  function renderPicker() {
-    return (
-      <Picker style={styles.picker}>
-        {
-          props.roster.map(player => {
-            return (
-              <Picker.Item
-                key={player.uniform_number}
-                label={player.display_name}
-                value={player.display_name}
-              />
-            );
-          })
-        }
-      </Picker>
-    );
-  }
-
-  return props.roster.length ? renderPicker() : null;
+  return (
+    <View style={styles.batter}>
+      <TouchableHighlight
+        onPress={() => props.navigate('PlayerPicker', { order: props.order })}>
+        <Text>Hello</Text>
+      </TouchableHighlight>
+    </View>
+  );
 }

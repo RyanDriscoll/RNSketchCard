@@ -9,20 +9,27 @@ import { Text, StyleSheet, View } from 'react-native';
 import Batter from '../components/Batter';
 
 class BattersContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   render() {
+    const { navigate } = this.props.navigation;
     const batters = [];
     let roster = this.props.selectedTeam === 'away'
       ? this.props.awayRoster
       : this.props.homeRoster;
     for (let i = 1; i <= 9; i++) {
-      batters.push(<Batter order={i} key={i} roster={roster} />);
+      batters.push(
+        <Batter
+          order={i}
+          key={i}
+          roster={roster}
+          navigate={navigate}
+        />);
     }
     return (
-      <View>
+      <View style={{ width: '50%' }}>
         { batters }
       </View>
     );

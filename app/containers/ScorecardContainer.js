@@ -6,7 +6,7 @@ import { ActionCreators } from '../actions';
 import BattersContainer from './BattersContainer';
 import ToggleTeam from '../components/ToggleTeam';
 
-import { Text, StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, View, ScrollView } from 'react-native';
 
 class ScorecardContainer extends Component {
   constructor(props) {
@@ -16,13 +16,13 @@ class ScorecardContainer extends Component {
   }
   render() {
     return (
-      <View>
+      <ScrollView>
         <ToggleTeam
           game={this.props.selectedGame}
           selectTeam={this.props.selectTeam}
         />
-        <BattersContainer />
-      </View>
+        <BattersContainer navigation={this.props.navigation} />
+      </ScrollView>
     );
   }
 }

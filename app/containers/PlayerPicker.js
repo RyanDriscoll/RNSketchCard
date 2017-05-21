@@ -13,6 +13,10 @@ var styles = StyleSheet.create({
 class PlayerPicker extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      player: {},
+      index: 0
+    };
   }
 
   render() {
@@ -20,13 +24,16 @@ class PlayerPicker extends Component {
       ? this.props.awayRoster
       : this.props.homeRoster;
     return roster.length
-      ? <Picker style={styles.picker}>
-          {roster.map(player => {
+      ? <Picker
+        style={styles.picker}
+        selectedValue={this.state.index}
+        onValueChange={(value) => this.setState({ player: roster[value], index: value })}>
+          {roster.map((player, index) => {
             return (
               <Picker.Item
                 key={player.uniform_number}
                 label={player.display_name}
-                value={player.display_name}
+                value={index}
               />
             );
           })}

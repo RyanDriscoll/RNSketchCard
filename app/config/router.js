@@ -26,9 +26,15 @@ export const HomeStack = StackNavigator({
     }
   },
   Scorecard: {
-    screen: ScorecardStack,
+    screen: ScorecardContainer,
     navigationOptions: {
       title: 'Scorecard'
+    }
+  },
+  PlayerPicker: {
+    screen: PlayerPicker,
+    navigationOptions: {
+      title: 'Choose a Player'
     }
   }
 });
