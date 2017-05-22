@@ -24,13 +24,27 @@ export default function (state = initialState, action) {
     //       action.image
     //     ]
     //   });
+
+    // {
+    //       [action.order]: [
+    //         ...state[action.team][action.inning][action.order],
+    //         action.image
+    //       ]
+    //     }
     case ADD_IMAGE:
+      // if (!state[action.team][action.inning]) {
+      //   let newState = Object.assign({}, state, {
+      //     [action.team]:
+      //   })
+      // }
       return Object.assign({}, state, {
         [action.team]: Object.assign({}, state[action.team][action.inning], {
-          [action.order]: [
-            ...state[action.team][action.inning][action.order],
-            action.image
-          ]
+          [action.inning]: Object.assign({}, state[action.team][action.inning][action.order], {
+            [action.order]: [
+              ...state[action.team][action.inning][action.order],
+              action.image
+            ]
+          })
         })
       });
     case UNDO_IMAGE:
