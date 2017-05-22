@@ -35,10 +35,6 @@ export default function FrameControl(props) {
         onPress={props.undo}
         title="Undo"
       />
-      <Button
-        onPress={props.toggleDrawErase}
-        title={props.erase ? 'Draw' : 'Erase'}
-      />
 
     </View>
   );

@@ -3,20 +3,7 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 import HomeContainer from '../containers/HomeContainer';
 import ScorecardContainer from '../containers/ScorecardContainer';
 import PlayerPicker from '../containers/PlayerPicker';
-
-export const ScorecardStack = StackNavigator({
-  Scorecard: {
-    screen: ScorecardContainer
-  },
-  PlayerPicker: {
-    screen: PlayerPicker,
-    navigationOptions: {
-      title: 'Choose a Player'
-    }
-  }
-}, {
-  headerMode: 'none'
-});
+import FrameContainer from '../containers/FrameContainer';
 
 export const HomeStack = StackNavigator({
   Home: {
@@ -36,6 +23,9 @@ export const HomeStack = StackNavigator({
     navigationOptions: {
       title: 'Choose a Player'
     }
+  },
+  Frame: {
+    screen: FrameContainer
   }
 });
 

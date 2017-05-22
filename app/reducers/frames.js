@@ -1,6 +1,7 @@
 import {
   ADD_IMAGE,
-  UNDO_IMAGE
+  UNDO_IMAGE,
+  TRASH_IMAGE
 } from '../constants';
 
 const initialState = {
@@ -26,6 +27,10 @@ export default function (state = initialState, action) {
     case UNDO_IMAGE:
       return Object.assign({}, state, {
         images: state.images.slice(0, -1)
+      });
+    case TRASH_IMAGE:
+      return Object.assign({}, state, {
+        images: state.images.slice(1)
       });
     // case ADD_PATHS:
     //   if (!newState[action.team][action.x]) {

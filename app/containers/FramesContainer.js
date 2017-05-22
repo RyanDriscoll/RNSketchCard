@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { StackNavigator } from 'react-navigation';
 import { ActionCreators } from '../actions';
 
-import { Text, StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, View, TouchableHighlight } from 'react-native';
 
 import LayeredImages from '../components/LayeredImages';
 
@@ -18,20 +18,21 @@ class FramesContainer extends Component {
     const frames = [];
     for (let i = 1; i <= 9; i++) {
       frames.push(
-        <LayeredImages
-          images={[]}
-          order={i}
-          key={i}
-          team={this.props.selectedTeam}
-          navigate={navigate}
-        />);
+        <TouchableHighlight key={i} onPress={() => navigate('Frame')}>
+          <View>
+            <LayeredImages
+              images={[]}
+              order={i}
+              team={this.props.selectedTeam}
+            />
+          </View>
+        </TouchableHighlight>
+      );
     }
 
     return (
-      <View style={{ width: '50%' }} >
-        {
-          frames
-        }
+      <View style={{ width: '50%' }}>
+        {frames}
       </View>
     );
   }

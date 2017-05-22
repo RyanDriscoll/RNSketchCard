@@ -21,6 +21,7 @@ class ScorecardContainer extends Component {
         <ToggleTeam
           game={this.props.selectedGame}
           selectTeam={this.props.selectTeam}
+          selectedTeam={this.props.selectedTeam}
         />
         <View style={{ flexDirection: 'row'}}>
           <BattersContainer navigation={this.props.navigation} />
@@ -37,7 +38,8 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    selectedGame: state.games.selectedGame
+    selectedGame: state.games.selectedGame,
+    selectedTeam: state.games.selectedTeam
   };
 }
 

@@ -5,35 +5,27 @@ import { ActionCreators } from '../actions';
 
 import {
   StyleSheet,
-  View
+  View,
+  Image,
+  Dimensions
 } from 'react-native';
 
 import LayeredImages from '../components/LayeredImages';
 import FrameControl from '../components/FrameControl';
 import Sketch from 'react-native-sketch';
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center'
-  },
-  imageContainer: {
-    borderWidth: 2
-  }
-});
 
 class FrameContainer extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      erase: false
-    };
+
     this.clear = this.clear.bind(this);
     this.onReset = this.onReset.bind(this);
     this.onSave = this.onSave.bind(this);
     this.onUpdate = this.onUpdate.bind(this);
     this.undo = this.undo.bind(this);
-    this.toggleDrawErase = this.toggleDrawErase.bind(this);
+    this.loadImage = this.loadImage.bind(this);
   }
 
   /**
@@ -66,11 +58,12 @@ class FrameContainer extends React.Component {
   }
 
   undo() {
+    this.sketch.clear();
     this.props.undoImage();
   }
 
-  toggleDrawErase() {
-    this.setState({erase: !this.state.erase});
+  loadImage() {
+    return this.props.images[this.props.images.length - 1];
   }
 
   /**
@@ -79,39 +72,65 @@ class FrameContainer extends React.Component {
    */
   onUpdate(base64Image) {
     this.props.addImage(base64Image);
-    this.sketch.clear();
+    if (this.props.images.length > 4) {
+      this.props.garbageCollectImage();
+    }
   }
 
+        // <LayeredImages
+        //   images={this.props.images}
+        // />
   render() {
+    let image = this.loadImage();
     return (
       <View style={styles.container}>
-        <LayeredImages
-          images={this.props.images}
-        />
-        <Sketch
-          fillColor="transparent"
-          strokeColor={this.state.erase ? '#FFF' : '#000'}
-          strokeThickness={this.state.erase ? 20 : 10}
-          imageType="png"
-          onReset={this.onReset}
-          onUpdate={this.onUpdate}
-          clearButtonHidden={true}
-          ref={(sketch) => { this.sketch = sketch; }}
-          style={styles.imageContainer}
-        />
+        <View style={{borderWidth: 2}}>
+          <Image source={require('../../frame.png')} style={styles.image}>
+            <Image source={{ uri: image}} style={styles.image}>
+              <Sketch
+                fillColor="transparent"
+                strokeColor={'#000'}
+                strokeThickness={15}
+                imageType="png"
+                onReset={this.onReset}
+                onUpdate={this.onUpdate}
+                clearButtonHidden={true}
+                ref={(sketch) => { this.sketch = sketch; }}
+                style={styles.image}
+              />
+            </Image>
+          </Image>
+        </View>
         <FrameControl
           undo={this.undo}
           clear={this.clear}
           onSave={this.onSave}
-          toggleDrawErase={this.toggleDrawErase}
-          erase={this.state.erase}
           images={this.props.images.length > 0}
         />
       </View>
     );
   }
-
 }
+
+let width = Dimensions.get('window').width;
+let height = width * 4 / 3;
+
+
+const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderWidth: 1,
+    top: 20
+  },
+  image: {
+    width: width,
+    height: height,
+  }
+});
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(ActionCreators, dispatch);
