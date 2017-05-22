@@ -10,18 +10,16 @@ import {
   Dimensions
 } from 'react-native';
 
-import LayeredImages from '../components/LayeredImages';
 import FrameControl from '../components/FrameControl';
 import Sketch from 'react-native-sketch';
 
 
-class FrameContainer extends React.Component {
+class DrawFrame extends React.Component {
 
   constructor(props) {
     super(props);
 
     this.clear = this.clear.bind(this);
-    this.onReset = this.onReset.bind(this);
     this.onSave = this.onSave.bind(this);
     this.onUpdate = this.onUpdate.bind(this);
     this.undo = this.undo.bind(this);
@@ -32,16 +30,10 @@ class FrameContainer extends React.Component {
    * Clear / reset the drawing
    */
   clear() {
+    this.sketch.clear();
     for (let i = 0; i < this.props.images.length; i++) {
       this.props.undoImage();
     }
-  }
-
-  /**
-   * Do extra things after the sketch reset
-   */
-  onReset() {
-    console.log('The drawing has been cleared!');
   }
 
   /**
@@ -71,15 +63,13 @@ class FrameContainer extends React.Component {
    * you'll receive the base64 representation of the drawing as a callback.
    */
   onUpdate(base64Image) {
-    this.props.addImage(base64Image);
+    const order = this.props.navigation.state.params.order;
+    this.props.addImage(base64Image, this.props.team, 1, order);
     if (this.props.images.length > 4) {
       this.props.garbageCollectImage();
     }
   }
 
-        // <LayeredImages
-        //   images={this.props.images}
-        // />
   render() {
     let image = this.loadImage();
     return (
@@ -92,7 +82,6 @@ class FrameContainer extends React.Component {
                 strokeColor={'#000'}
                 strokeThickness={15}
                 imageType="png"
-                onReset={this.onReset}
                 onUpdate={this.onUpdate}
                 clearButtonHidden={true}
                 ref={(sketch) => { this.sketch = sketch; }}
@@ -123,8 +112,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderWidth: 1,
-    top: 20
   },
   image: {
     width: width,
@@ -138,8 +125,9 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    images: state.frames.images
+    images: state.frames.images,
+    team: state.games.selectedTeam
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FrameContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(DrawFrame);

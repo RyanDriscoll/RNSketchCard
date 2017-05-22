@@ -1,14 +1,14 @@
 import React from 'react';
 import { Button, StyleSheet, View, Text, TouchableHighlight, Dimensions } from 'react-native';
 
-const width = Dimensions.get('window').width / 2;
+const width = Dimensions.get('window').width / 3;
 const height = width / 3 * 4;
 
 const styles = StyleSheet.create({
   order: {
     height: height,
     backgroundColor: 'green',
-    borderWidth: 2
+    borderWidth: 1
   },
   batter: {
   }

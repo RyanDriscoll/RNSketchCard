@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { StackNavigator } from 'react-navigation';
 import { ActionCreators } from '../actions';
 
-import { Text, StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, View, Dimensions } from 'react-native';
 
 import Batter from '../components/Batter';
 
@@ -14,6 +14,7 @@ class BattersContainer extends Component {
   // }
 
   render() {
+    const width = Dimensions.get('window').width * 2 / 3;
     const { navigate } = this.props.navigation;
     const batters = [];
     let selectedBatters = this.props.selectedTeam === 'away'
@@ -30,7 +31,7 @@ class BattersContainer extends Component {
         />);
     }
     return (
-      <View style={{ width: '50%' }}>
+      <View style={{ width: width }}>
         { batters }
       </View>
     );

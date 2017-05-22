@@ -5,24 +5,33 @@ import {
 } from '../constants';
 
 const initialState = {
-    // home: {
-    //   1: {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: []},
-    // },
-    // away: {
-    //   1: {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: []},
-    // },
+    home: {
+      1: {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: []},
+    },
+    away: {
+      1: {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: []},
+    },
     images: []
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
 
+    // case ADD_IMAGE:
+    //   return Object.assign({}, state, {
+    //     images: [
+    //       ...state.images,
+    //       action.image
+    //     ]
+    //   });
     case ADD_IMAGE:
       return Object.assign({}, state, {
-        images: [
-          ...state.images,
-          action.image
-        ]
+        [action.team]: Object.assign({}, state[action.team][action.inning], {
+          [action.order]: [
+            ...state[action.team][action.inning][action.order],
+            action.image
+          ]
+        })
       });
     case UNDO_IMAGE:
       return Object.assign({}, state, {

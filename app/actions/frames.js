@@ -4,11 +4,14 @@ import {
   TRASH_IMAGE
 } from '../constants';
 
-export const addImage = (image) => {
+export const addImage = (image, team, inning, order) => {
   return dispatch => {
     dispatch({
       type: ADD_IMAGE,
-      image
+      image,
+      team,
+      inning,
+      order
     });
   };
 };

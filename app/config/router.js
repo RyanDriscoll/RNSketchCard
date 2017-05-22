@@ -3,7 +3,7 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 import HomeContainer from '../containers/HomeContainer';
 import ScorecardContainer from '../containers/ScorecardContainer';
 import PlayerPicker from '../containers/PlayerPicker';
-import FrameContainer from '../containers/FrameContainer';
+import DrawFrame from '../containers/DrawFrame';
 
 export const HomeStack = StackNavigator({
   Home: {
@@ -25,7 +25,7 @@ export const HomeStack = StackNavigator({
     }
   },
   Frame: {
-    screen: FrameContainer
+    screen: DrawFrame
   }
 });
 
