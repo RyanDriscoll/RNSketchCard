@@ -6,6 +6,7 @@ import { ActionCreators } from '../actions';
 import BattersContainer from './BattersContainer';
 import FramesContainer from './FramesContainer';
 import ToggleTeam from '../components/ToggleTeam';
+import InningControl from '../components/InningControl';
 
 import { Text, StyleSheet, View, ScrollView } from 'react-native';
 
@@ -23,6 +24,11 @@ class ScorecardContainer extends Component {
           selectTeam={this.props.selectTeam}
           selectedTeam={this.props.selectedTeam}
         />
+        <InningControl
+          updateInning={this.props.updateInning}
+          inning={this.props.inning}
+          team={this.props.team}
+        />
         <View style={{ flexDirection: 'row'}}>
           <BattersContainer navigation={this.props.navigation} />
           <FramesContainer navigation={this.props.navigation} />
@@ -39,7 +45,9 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   return {
     selectedGame: state.games.selectedGame,
-    selectedTeam: state.games.selectedTeam
+    selectedTeam: state.games.selectedTeam,
+    inning: state.frames.currentInning,
+    team: state.games.selectedTeam
   };
 }
 

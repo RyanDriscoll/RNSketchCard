@@ -1,7 +1,8 @@
 import {
   ADD_IMAGE,
   UNDO_IMAGE,
-  TRASH_IMAGE
+  TRASH_IMAGE,
+  UPDATE_INNING
 } from '../constants';
 
 export const addImage = (image, team, inning, order) => {
@@ -28,6 +29,16 @@ export const garbageCollectImage = () => {
   return dispatch => {
     dispatch({
       type: TRASH_IMAGE
+    });
+  };
+};
+
+export const updateInning = (team, inning) => {
+  return dispatch => {
+    dispatch({
+      type: UPDATE_INNING,
+      team,
+      inning
     });
   };
 };

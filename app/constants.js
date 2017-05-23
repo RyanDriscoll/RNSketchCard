@@ -6,3 +6,4 @@ export const SELECT_GAME = 'SELECT_GAME';
 export const SELECT_TEAM = 'SELECT_TEAM';
 export const SELECT_PLAYER = 'SELECT_PLAYER';
 export const TRASH_IMAGE = 'TRASH_IMAGE';
+export const UPDATE_INNING = 'UPDATE_INNING';

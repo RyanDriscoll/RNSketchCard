@@ -32,7 +32,7 @@ class DrawFrame extends React.Component {
   clear() {
     this.sketch.clear();
     for (let i = 0; i < this.props.images.length; i++) {
-      this.props.undoImage();
+      this.props.undoImage(this.props.team, this.props.inning);
     }
   }
 
@@ -51,7 +51,7 @@ class DrawFrame extends React.Component {
 
   undo() {
     this.sketch.clear();
-    this.props.undoImage();
+    this.props.undoImage(this.props.team, this.props.inning);
   }
 
   loadImage() {
@@ -64,7 +64,7 @@ class DrawFrame extends React.Component {
    */
   onUpdate(base64Image) {
     const order = this.props.navigation.state.params.order;
-    this.props.addImage(base64Image, this.props.team, 1, order);
+    this.props.addImage(base64Image, this.props.team, this.props.inning, order);
     if (this.props.images.length > 4) {
       this.props.garbageCollectImage();
     }
@@ -126,7 +126,8 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   return {
     images: state.frames.images,
-    team: state.games.selectedTeam
+    team: state.games.selectedTeam,
+    inning: state.frames.currentInning
   };
 }
 
