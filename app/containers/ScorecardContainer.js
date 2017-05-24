@@ -12,7 +12,7 @@ import { View, ScrollView } from 'react-native';
 
 function ScorecardContainer(props) {
   return (
-    <ScrollView>
+    <View style={{ flex: 1 }}>
       <ToggleTeam
         game={props.selectedGame}
         selectTeam={props.selectTeam}
@@ -23,11 +23,13 @@ function ScorecardContainer(props) {
         inning={props.inning}
         team={props.team}
       />
-      <View style={{ flexDirection: 'row'}}>
-        <BattersContainer navigation={props.navigation} />
-        <FramesContainer navigation={props.navigation} />
-      </View>
-    </ScrollView>
+      <ScrollView>
+        <View style={{ flexDirection: 'row'}}>
+          <BattersContainer navigation={props.navigation} />
+          <FramesContainer navigation={props.navigation} />
+        </View>
+      </ScrollView>
+    </View>
   );
 }
 

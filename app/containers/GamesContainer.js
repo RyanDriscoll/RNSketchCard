@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { StackNavigator } from 'react-navigation';
 import { ActionCreators } from '../actions';
 import Game from '../components/Game';
 
-import { Text, StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 
-class HomeContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
+class GamesContainer extends Component {
+
   componentDidMount() {
     this.props.getGames();
   }
@@ -46,4 +43,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(GamesContainer);

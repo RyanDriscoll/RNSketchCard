@@ -1,13 +1,13 @@
-import React from 'react';
-import { TabNavigator, StackNavigator } from 'react-navigation';
-import HomeContainer from '../containers/HomeContainer';
+import { StackNavigator } from 'react-navigation';
+
+import GamesContainer from '../containers/GamesContainer';
 import ScorecardContainer from '../containers/ScorecardContainer';
 import PlayerPicker from '../containers/PlayerPicker';
 import DrawFrame from '../containers/DrawFrame';
 
 export const HomeStack = StackNavigator({
   Home: {
-    screen: HomeContainer,
+    screen: GamesContainer,
     navigationOptions: {
       title: 'Games'
     }
