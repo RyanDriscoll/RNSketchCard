@@ -83,9 +83,6 @@ class DrawFrame extends React.Component {
    */
   onUpdate(base64Image) {
     this.props.addImage(base64Image, this.props.team, this.props.inning, this.state.order);
-    if (this.props.images[this.state.order].length > 4) {
-      this.props.garbageCollectImage();
-    }
   }
 
   nestImages() {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../actions';
@@ -18,14 +18,10 @@ const styles = StyleSheet.create({
   }
 });
 
-class FramesContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.nestImages = this.nestImages.bind(this);
-  }
+function FramesContainer(props) {
 
-  nestImages(order) {
-    const images = this.props.images[order];
+  function nestImages(order) {
+    const images = props.images[order];
     let parent, child;
     for (let i = 0; i <= images.length; i++) {
       parent = React.createElement(Image, {
@@ -38,28 +34,26 @@ class FramesContainer extends Component {
     return parent;
   }
 
-  render() {
-    const { navigate } = this.props.navigation;
-    const frames = [];
-    for (let i = 1; i <= 9; i++) {
-      frames.push(
-        <TouchableHighlight key={i} onPress={() => navigate('Frame', { order: i})}>
-          <View >
-            {
-              this.nestImages(i)
-            }
-          </View>
-        </TouchableHighlight>
-      );
-    }
-    return (
-      <View style={styles.container}>
-        {frames}
-      </View>
+  const { navigate } = props.navigation;
+  const frames = [];
+  for (let i = 1; i <= 9; i++) {
+    frames.push(
+      <TouchableHighlight key={i} onPress={() => navigate('Frame', { order: i})}>
+        <View>
+          {
+            nestImages(i)
+          }
+        </View>
+      </TouchableHighlight>
     );
   }
-}
 
+  return (
+    <View style={styles.container}>
+      {frames}
+    </View>
+  );
+}
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(ActionCreators, dispatch);

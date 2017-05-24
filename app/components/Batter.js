@@ -7,7 +7,6 @@ const height = width / 3 * 4;
 const styles = StyleSheet.create({
   order: {
     height: height,
-    backgroundColor: 'green',
     borderWidth: 1
   },
   batter: {

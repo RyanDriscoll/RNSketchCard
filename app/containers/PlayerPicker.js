@@ -2,13 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../actions';
-import { Button, StyleSheet, View, Picker } from 'react-native';
-
-var styles = StyleSheet.create({
-  picker: {
-    height: 200
-  }
-});
+import { Button, View, Picker } from 'react-native';
 
 class PlayerPicker extends Component {
   constructor(props) {
@@ -18,9 +12,8 @@ class PlayerPicker extends Component {
       player: {},
       index: 0
     };
-
-
     this.handlePress = this.handlePress.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -29,6 +22,13 @@ class PlayerPicker extends Component {
       : this.props.homeRoster;
 
     this.setState({ player: roster[0], roster });
+  }
+
+  handleChange(value) {
+    this.setState({
+      player: this.state.roster[value],
+      index: value
+    });
   }
 
   handlePress() {
@@ -45,10 +45,8 @@ class PlayerPicker extends Component {
     return (
       <View>
         <Picker
-          style={styles.picker}
           selectedValue={this.state.index}
-          onValueChange={value =>
-            this.setState({ player: this.state.roster[value], index: value })}
+          onValueChange={this.handleChange}
         >
           {this.state.roster.map((player, index) => {
             return (

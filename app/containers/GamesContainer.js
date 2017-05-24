@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../actions';
 import Game from '../components/Game';
 
-import { View } from 'react-native';
+import { ScrollView } from 'react-native';
 
 class GamesContainer extends Component {
 
@@ -15,7 +15,7 @@ class GamesContainer extends Component {
     const games = this.props.games;
     const { navigate } = this.props.navigation;
     return (
-      <View>
+      <ScrollView>
         {!!games.length &&
           games.map(game => {
             return (
@@ -28,7 +28,7 @@ class GamesContainer extends Component {
               />
             );
           })}
-      </View>
+      </ScrollView>
     );
   }
 }

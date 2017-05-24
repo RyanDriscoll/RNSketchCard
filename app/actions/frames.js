@@ -1,7 +1,6 @@
 import {
   ADD_IMAGE,
   UNDO_IMAGE,
-  TRASH_IMAGE,
   UPDATE_INNING
 } from '../constants';
 
@@ -24,14 +23,6 @@ export const undoImage = (team, inning, order) => {
       team,
       inning,
       order
-    });
-  };
-};
-
-export const garbageCollectImage = () => {
-  return dispatch => {
-    dispatch({
-      type: TRASH_IMAGE
     });
   };
 };
