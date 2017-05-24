@@ -34,17 +34,24 @@ class DrawFrame extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      order: this.props.navigation.state.params.order
+      order: this.props.navigation.state.params.order,
+      images: []
     };
     this.clear = this.clear.bind(this);
-    this.onSave = this.onSave.bind(this);
+    // this.onSave = this.onSave.bind(this);
     this.onUpdate = this.onUpdate.bind(this);
-    this.undo = this.undo.bind(this);
-    this.loadImage = this.loadImage.bind(this);
+    // this.undo = this.undo.bind(this);
+    // this.loadImage = this.loadImage.bind(this);
     this.nestImages = this.nestImages.bind(this);
   }
 
   componentWillUnmount() {
+    this.props.addImage(
+      this.state.images[this.state.images.length - 1],
+      this.props.team,
+      this.props.inning,
+      this.state.order
+    );
     this.sketch.clear();
   }
 
@@ -60,29 +67,31 @@ class DrawFrame extends React.Component {
    * so that you can save the drawing in the device and get an object
    * once the promise is resolved, containing the path of the image.
    */
-  onSave() {
+  // onSave() {
     // this.sketch.saveImage(this.state.images)
     //   .then((data) => {
     //     console.log(data);
     //   })
     //   .catch((error) => console.log(error));
-  }
+  // }
 
-  undo() {
-    this.sketch.clear();
-    this.props.undoImage(this.props.team, this.props.inning, this.state.order);
-  }
+  // undo() {
+  //   this.sketch.clear();
+  //   this.props.undoImage(this.props.team, this.props.inning, this.state.order);
+  // }
 
-  loadImage() {
-    return this.props.images[this.state.order][this.props.images[this.state.order].length - 1];
-  }
+  // loadImage() {
+  //   return this.props.images[this.state.order][this.props.images[this.state.order].length - 1];
+  // }
 
   /**
    * On every update (touch up from the drawing),
    * you'll receive the base64 representation of the drawing as a callback.
    */
   onUpdate(base64Image) {
-    this.props.addImage(base64Image, this.props.team, this.props.inning, this.state.order);
+    this.setState({
+      images: [...this.state.images, base64Image]
+    });
   }
 
   nestImages() {

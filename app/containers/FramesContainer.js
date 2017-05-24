@@ -13,8 +13,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: width,
-    height: height,
-    borderWidth: 1
+    height: height
   }
 });
 
@@ -22,7 +21,7 @@ function FramesContainer(props) {
 
   function nestImages(order) {
     const images = props.images[order];
-    let parent, child;
+    let parent, child, element;
     for (let i = 0; i <= images.length; i++) {
       parent = React.createElement(Image, {
         style: styles.image,
@@ -31,7 +30,10 @@ function FramesContainer(props) {
       }, child);
       child = parent;
     }
-    return parent;
+    element = React.createElement(View, {
+      style: { borderWidth: 1, height, width }
+    }, parent);
+    return element;
   }
 
   const { navigate } = props.navigation;
