@@ -17,10 +17,13 @@ export const addImage = (image, team, inning, order) => {
   };
 };
 
-export const undoImage = () => {
+export const undoImage = (team, inning, order) => {
   return dispatch => {
     dispatch({
-      type: UNDO_IMAGE
+      type: UNDO_IMAGE,
+      team,
+      inning,
+      order
     });
   };
 };

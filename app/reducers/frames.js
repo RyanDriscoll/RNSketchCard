@@ -30,6 +30,7 @@ export default function (state = initialState, action) {
         })
       });
     case UNDO_IMAGE:
+    console.log('undo image', state[action.team][action.inning][action.order], action.team, action.inning, action.order);
       return Object.assign({}, state, {
         [action.team]: Object.assign({}, state[action.team], {
           [action.inning]: Object.assign({}, state[action.team][action.inning], {
