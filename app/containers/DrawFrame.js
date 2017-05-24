@@ -151,7 +151,6 @@ function mapStateToProps(state) {
   return {
     team: state.games.selectedTeam,
     inning: state.frames.currentInning,
-    frames: state.frames,
     images: state.frames[state.games.selectedTeam][state.frames.currentInning]
   };
 }
