@@ -11,18 +11,31 @@ import {
 } from 'react-native';
 
 import FrameControl from '../components/FrameControl';
-import LayeredImages from '../components/LayeredImages';
 import Sketch from 'react-native-sketch';
 
+let width = Dimensions.get('window').width;
+let height = width * 4 / 3;
+
+const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  image: {
+    width: width,
+    height: height,
+  }
+});
 
 class DrawFrame extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
       order: this.props.navigation.state.params.order
     };
-
     this.clear = this.clear.bind(this);
     this.onSave = this.onSave.bind(this);
     this.onUpdate = this.onUpdate.bind(this);
@@ -35,9 +48,6 @@ class DrawFrame extends React.Component {
     this.sketch.clear();
   }
 
-  /**
-   * Clear / reset the drawing
-   */
   clear() {
     this.sketch.clear();
     for (let i = 0; i < this.props.images[this.state.order].length; i++) {
@@ -77,19 +87,6 @@ class DrawFrame extends React.Component {
       this.props.garbageCollectImage();
     }
   }
-            // <Image source={{ uri: image}} style={styles.image}>
-
-              // <Sketch
-              //   fillColor="transparent"
-              //   strokeColor={'#000'}
-              //   strokeThickness={15}
-              //   imageType="png"
-              //   onUpdate={this.onUpdate}
-              //   clearButtonHidden={true}
-              //   ref={(sketch) => { this.sketch = sketch; }}
-              //   style={{height: height, width: width, zIndex: 1000}}
-              // />
-            // <LayeredImages ref={el => {this.el = el;}} order={order} images={this.props.images[order]} height={height} width={width} style={{height: height, width: width}} />
 
   nestImages() {
     const
@@ -118,13 +115,7 @@ class DrawFrame extends React.Component {
     return parent;
   }
 
-          // <Image source={require('../../frame.png')} style={styles.image} />
   render() {
-    // console.log('state', this.state.order);
-    // let image = this.loadImage();
-    // let width = Dimensions.get('window').width;
-    // let height = width * 4 / 3;
-    // const order = this.props.navigation.state.params.order;
     return (
       <View style={styles.container}>
         <View style={{borderWidth: 2}}>
@@ -142,24 +133,6 @@ class DrawFrame extends React.Component {
     );
   }
 }
-
-let width = Dimensions.get('window').width;
-let height = width * 4 / 3;
-
-
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  image: {
-    width: width,
-    height: height,
-  }
-});
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(ActionCreators, dispatch);
