@@ -60,6 +60,9 @@ class DrawFrame extends React.Component {
     for (let i = 0; i < this.props.images[this.state.order].length; i++) {
       this.props.undoImage(this.props.team, this.props.inning, this.state.order);
     }
+    this.setState({
+      images: []
+    });
   }
 
   /**
