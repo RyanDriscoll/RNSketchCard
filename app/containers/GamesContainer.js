@@ -21,7 +21,7 @@ class GamesContainer extends Component {
             return (
               <Game
                 game={game}
-                key={`${game.homeId + game.awayId + game.time}`}
+                key={game.gameId}
                 selectGame={this.props.selectGame}
                 getRosters={this.props.getRosters}
                 navigate={navigate}

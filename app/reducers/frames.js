@@ -11,8 +11,7 @@ const initialState = {
     away: {
       1: {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: []},
     },
-    currentInning: 1,
-    images: []
+    currentInning: 1
 };
 
 export default function (state = initialState, action) {
@@ -43,10 +42,10 @@ export default function (state = initialState, action) {
       if (!state[action.team][action.inning]) {
         return Object.assign({}, state, {
           currentInning: action.inning,
-          away: Object.assign({}, state[action.team], {
+          away: Object.assign({}, state.away, {
             [action.inning]: {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: []}
           }),
-          home: Object.assign({}, state[action.team], {
+          home: Object.assign({}, state.home, {
             [action.inning]: {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: []}
           })
         });

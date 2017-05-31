@@ -5,20 +5,22 @@ import { ActionCreators } from '../actions';
 
 import BattersContainer from './BattersContainer';
 import FramesContainer from './FramesContainer';
-import ToggleTeam from '../components/ToggleTeam';
+import Team from '../components/Team';
 import InningControl from '../components/InningControl';
 
 import { View, ScrollView } from 'react-native';
 
 function ScorecardContainer(props) {
   return (
-    <View style={{ flex: 1 }}>
-      <ToggleTeam
+    <View >
+      <Team
+        style={{ height: 20 }}
         game={props.selectedGame}
-        selectTeam={props.selectTeam}
         selectedTeam={props.selectedTeam}
+        text={props.selectedGame[`${props.selectedTeam}Name`]}
       />
       <InningControl
+        selectTeam={props.selectTeam}
         updateInning={props.updateInning}
         inning={props.inning}
         team={props.team}

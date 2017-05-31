@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import FrameControl from '../components/FrameControl';
+import Team from '../components/Team';
 import Sketch from 'react-native-sketch';
 
 let width = Dimensions.get('window').width;
@@ -125,8 +126,14 @@ class DrawFrame extends React.Component {
   }
 
   render() {
+    let player = this.props.players[this.state.order][this.props.players[this.state.order].length - 1];
     return (
       <View style={styles.container}>
+        <Team
+          selectedTeam={this.props.team}
+          game={this.props.selectedGame}
+          text={ player !== undefined ? player.display_name : ''}
+        />
         <View style={{borderWidth: 2}}>
           {
             this.nestImages()
@@ -150,8 +157,10 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   return {
     team: state.games.selectedTeam,
+    selectedGame: state.games.selectedGame,
     inning: state.frames.currentInning,
-    images: state.frames[state.games.selectedTeam][state.frames.currentInning]
+    images: state.frames[state.games.selectedTeam][state.frames.currentInning],
+    players: state.players[state.games.selectedTeam]
   };
 }
 
