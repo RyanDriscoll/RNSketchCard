@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../actions';
 import { Button, View, Picker } from 'react-native';
 
+import DisplayBatters from '../components/DisplayBatters';
+
 class PlayerPicker extends Component {
   constructor(props) {
     super(props);
@@ -37,7 +39,7 @@ class PlayerPicker extends Component {
       this.props.navigation.state.params.order,
       this.state.player
     );
-    this.props.navigation.goBack();
+    // this.props.navigation.goBack();
   }
 
   render() {
@@ -58,9 +60,18 @@ class PlayerPicker extends Component {
             );
           })}
         </Picker>
-        <Button
-          onPress={this.handlePress}
-          title="ADD PLAYER"
+        <View style={{backgroundColor: 'blue', width: '35%', alignSelf: 'center'}}>
+          <Button
+            onPress={this.handlePress}
+            title="ADD PLAYER"
+            color="#FFFFFF"
+          />
+        </View>
+        <DisplayBatters
+          team={this.props.selectedTeam}
+          order={this.props.navigation.state.params.order}
+          removePlayer={this.props.removePlayer}
+          batters={this.props.batters[this.props.navigation.state.params.order]}
         />
       </View>
     );
@@ -75,7 +86,8 @@ function mapStateToProps(state) {
   return {
     homeRoster: state.games.homeRoster,
     awayRoster: state.games.awayRoster,
-    selectedTeam: state.games.selectedTeam
+    selectedTeam: state.games.selectedTeam,
+    batters: state.players[state.games.selectedTeam]
   };
 }
 

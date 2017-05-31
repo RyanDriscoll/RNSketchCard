@@ -4,14 +4,14 @@ import { Button, StyleSheet, View, Text, Image } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center'
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   button: {
     backgroundColor: 'blue',
-    borderColor: '#FFF',
-    width: '30%',
-    borderWidth: 2
+    width: 50,
+    margin: 2,
+    borderRadius: 50
   }
 });
 
@@ -45,19 +45,17 @@ export default function InningControl(props) {
     <View style={styles.container}>
       <View style={styles.button}>
         <Button
-          style={styles.button}
           color="#FFF"
           onPress={handleBackPress}
-          title="Previous"
+          title={'\u2190'}
         />
       </View>
         <Text style={{ fontSize: 20 }}>{`${triangle} ${props.inning}`}</Text>
       <View style={styles.button}>
         <Button
-          style={styles.button}
           color="#FFF"
           onPress={handleForwardPress}
-          title="Next"
+          title={'\u2192'}
         />
       </View>
     </View>

@@ -42,7 +42,6 @@ class DrawFrame extends React.Component {
     this.save = this.save.bind(this);
     this.onUpdate = this.onUpdate.bind(this);
     this.undo = this.undo.bind(this);
-    // this.loadImage = this.loadImage.bind(this);
     this.nestImages = this.nestImages.bind(this);
   }
 
@@ -96,14 +95,6 @@ class DrawFrame extends React.Component {
     });
   }
 
-  // loadImage() {
-  //   return this.props.images[this.state.order][this.props.images[this.state.order].length - 1];
-  // }
-
-  /**
-   * On every update (touch up from the drawing),
-   * you'll receive the base64 representation of the drawing as a callback.
-   */
   onUpdate(base64Image) {
     this.setState({
       images: [...this.state.images, base64Image]

@@ -1,5 +1,6 @@
 import {
-  SELECT_PLAYER
+  SELECT_PLAYER,
+  REMOVE_PLAYER
 } from '../constants';
 
 export const selectPlayer = (team, order, player) => {
@@ -9,6 +10,17 @@ export const selectPlayer = (team, order, player) => {
       team,
       order,
       player
+    });
+  };
+};
+
+export const removePlayer = (team, order, index) => {
+  return dispatch => {
+    dispatch({
+      type: REMOVE_PLAYER,
+      team,
+      order,
+      index
     });
   };
 };
