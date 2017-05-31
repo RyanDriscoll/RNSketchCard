@@ -23,20 +23,21 @@ export default function FrameControl(props) {
     <View style={styles.container}>
 
       <Button
+        onPress={props.undo}
+        title="Undo"
+        disabled={!props.disableUndo}
+      />
+      <Button
         onPress={props.clear}
         title="Clear"
+      />
+      <Button
+        disabled={!props.disableUndo}
+        onPress={props.save}
+        title="Save"
       />
 
     </View>
   );
 }
 
-      // <Button
-      //   disabled={!props.images}
-      //   onPress={props.onSave}
-      //   title="Save"
-      // />
-      // <Button
-      //   onPress={props.undo}
-      //   title="Undo"
-      // />

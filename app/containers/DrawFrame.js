@@ -39,9 +39,9 @@ class DrawFrame extends React.Component {
       images: []
     };
     this.clear = this.clear.bind(this);
-    // this.onSave = this.onSave.bind(this);
+    this.save = this.save.bind(this);
     this.onUpdate = this.onUpdate.bind(this);
-    // this.undo = this.undo.bind(this);
+    this.undo = this.undo.bind(this);
     // this.loadImage = this.loadImage.bind(this);
     this.nestImages = this.nestImages.bind(this);
   }
@@ -71,18 +71,30 @@ class DrawFrame extends React.Component {
    * so that you can save the drawing in the device and get an object
    * once the promise is resolved, containing the path of the image.
    */
-  // onSave() {
     // this.sketch.saveImage(this.state.images)
     //   .then((data) => {
     //     console.log(data);
     //   })
     //   .catch((error) => console.log(error));
-  // }
+  save() {
+    this.props.addImage(
+      this.state.images[this.state.images.length - 1],
+      this.props.team,
+      this.props.inning,
+      this.state.order
+    );
+    this.sketch.clear();
+    this.setState({
+      images: []
+    });
+  }
 
-  // undo() {
-  //   this.sketch.clear();
-  //   this.props.undoImage(this.props.team, this.props.inning, this.state.order);
-  // }
+  undo() {
+    this.sketch.clear();
+    this.setState({
+      images: []
+    });
+  }
 
   // loadImage() {
   //   return this.props.images[this.state.order][this.props.images[this.state.order].length - 1];
@@ -142,8 +154,8 @@ class DrawFrame extends React.Component {
         <FrameControl
           undo={this.undo}
           clear={this.clear}
-          onSave={this.onSave}
-          images={this.props.images[this.state.order].length > 0}
+          save={this.save}
+          disableUndo={this.state.images.length > 0}
         />
       </View>
     );
