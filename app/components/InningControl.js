@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     margin: 6,
+    height: 50,
     backgroundColor: '#ffffff',
     shadowColor: '#000000',
     shadowOpacity: 0.3,

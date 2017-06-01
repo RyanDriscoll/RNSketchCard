@@ -30,7 +30,7 @@ function ScorecardContainer(props) {
           <BattersContainer navigation={props.navigation} />
           <FramesContainer navigation={props.navigation} />
         </View>
-        <View style={{ height: 83 }} />
+        <View style={{ height: 102 }} />
       </ScrollView>
     </View>
   );

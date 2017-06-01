@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   batter: {
     height: height,
     padding: 10,
-    margin: 3,
+    margin: 6,
     marginLeft: 6,
     backgroundColor: 'white',
     shadowColor: '#000000',
@@ -65,15 +65,9 @@ export default function Batter(props) {
             return (
               <View key={i}>
                 <View style={styles.batters}>
-                  <View style={styles.batter}>
                     <Text style={styles.text}>{batter.uniform_number}</Text>
-                  </View>
-                  <View style={styles.batter}>
                     <Text style={styles.text}>{batter.display_name}</Text>
-                  </View>
-                  <View style={styles.batter}>
                     <Text style={styles.text}>{batter.position}</Text>
-                  </View>
                 </View>
               </View>
             );

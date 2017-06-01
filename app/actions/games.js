@@ -8,10 +8,13 @@ import {
   RESET_DATA
 } from '../constants';
 
+
 export const getGames = () => {
+  const gamesAPI = 'https://mlbsketchcard.herokuapp.com/api/games';
+  // const gamesAPI = 'https://mlbsketchcard.herokuapp.com/api/games';
   return dispatch => {
     return axios
-      .get('https://mlbsketchcard.herokuapp.com/api/games')
+      .get(gamesAPI)
       .then(res => res.data)
       .then(games => {
         dispatch({
@@ -24,11 +27,15 @@ export const getGames = () => {
 };
 
 export const getRosters = game => {
+  // const homeRosterAPI = `https://mlbsketchcard.herokuapp.com/api/team/${game.homeId}`;
+  // const awayRosterAPI = `https://mlbsketchcard.herokuapp.com/api/team/${game.awayId}`
+  const homeRosterAPI = `http://localhost:3001/api/team/${game.homeId}`;
+  const awayRosterAPI = `http://localhost:3001/api/team/${game.awayId}`;
   return dispatch => {
     return axios
       .all([
-        axios.get(`https://mlbsketchcard.herokuapp.com/api/team/${game.homeId}`),
-        axios.get(`https://mlbsketchcard.herokuapp.com/api/team/${game.awayId}`)
+        axios.get(homeRosterAPI),
+        axios.get(awayRosterAPI)
       ])
       .then(
         axios.spread(function(home, away) {

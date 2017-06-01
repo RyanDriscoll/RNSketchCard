@@ -137,7 +137,7 @@ class DrawFrame extends React.Component {
           game={this.props.selectedGame}
           text={ player !== undefined ? player.display_name : ''}
         />
-        <View style={{borderWidth: 2}}>
+        <View style={{borderWidth: 2, backgroundColor: '#FFFFFF'}}>
           {
             this.nestImages()
           }

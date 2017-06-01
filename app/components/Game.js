@@ -30,6 +30,7 @@ export default function Game(props) {
     <View style={styles.game}>
       <Button
         onPress={handleClick}
+        color="#000000"
         title={`${game.awayName} vs. ${game.homeName}`}
       />
     </View>
