@@ -3,12 +3,8 @@ import {
   StyleSheet,
   View,
   Text,
-  Dimensions,
   Button
 } from 'react-native';
-
-const width = Dimensions.get('window').width / 3;
-const height = width / 3 * 4;
 
 const styles = StyleSheet.create({
   button: {

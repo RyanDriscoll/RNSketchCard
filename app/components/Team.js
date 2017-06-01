@@ -14,7 +14,7 @@ export default function Team(props) {
       <Text style={{
 
         color: game[`${props.selectedTeam}Colors`][2],
-        fontSize: 20,
+        fontSize: 25,
         fontWeight: 'bold',
       }}>
       { props.text }

@@ -9,7 +9,7 @@ import { Text, StyleSheet, View, Dimensions } from 'react-native';
 import Batter from '../components/Batter';
 
 function BattersContainer(props) {
-  const width = Dimensions.get('window').width * 2 / 3;
+  const width = Dimensions.get('window').width * 2 / 3 - 12;
   const { navigate } = props.navigation;
   const batters = [];
   let selectedBatters = props.selectedTeam === 'away'

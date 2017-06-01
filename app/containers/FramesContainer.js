@@ -9,11 +9,20 @@ let height = width * 4 / 3;
 
 const styles = StyleSheet.create({
   container: {
-    width: '50%'
+    // width: '50%'
   },
   image: {
     width: width,
     height: height
+  },
+  frame: {
+    backgroundColor: 'white',
+    shadowColor: '#000000',
+    shadowOpacity: 0.3,
+    shadowOffset: {width: 0, height: 8},
+    shadowRadius: 6,
+    margin: 3,
+    marginRight: 6
   }
 });
 
@@ -31,7 +40,7 @@ function FramesContainer(props) {
       child = parent;
     }
     element = React.createElement(View, {
-      style: { borderWidth: 1, height, width }
+      style: { height, width }
     }, parent);
     return element;
   }
@@ -40,13 +49,15 @@ function FramesContainer(props) {
   const frames = [];
   for (let i = 1; i <= 9; i++) {
     frames.push(
-      <TouchableHighlight key={i} onPress={() => navigate('Frame', { order: i})}>
+      <View key={i} style={styles.frame}>
+      <TouchableHighlight onPress={() => navigate('Frame', { order: i})}>
         <View>
           {
             nestImages(i)
           }
         </View>
       </TouchableHighlight>
+      </View>
     );
   }
 

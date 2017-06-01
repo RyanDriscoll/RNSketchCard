@@ -8,14 +8,20 @@ import {
   Dimensions
 } from 'react-native';
 
-const width = Dimensions.get('window').width / 3;
-const height = width / 3 * 4;
+const deviceWidth = Dimensions.get('window').width / 3;
+const height = deviceWidth / 3 * 4;
 
 const styles = StyleSheet.create({
-  order: {
+  batter: {
     height: height,
-    borderWidth: 1,
-    padding: 10
+    padding: 10,
+    margin: 3,
+    marginLeft: 6,
+    backgroundColor: 'white',
+    shadowColor: '#000000',
+    shadowOpacity: 0.3,
+    shadowOffset: {width: 0, height: 8},
+    shadowRadius: 6
   },
   batters: {
     flexDirection: 'row',
@@ -24,6 +30,11 @@ const styles = StyleSheet.create({
     height: 30,
     borderBottomWidth: 2,
     borderBottomColor: 'gray'
+  },
+  placeholderText: {
+    fontSize: 20,
+    color: 'gray',
+    fontStyle: 'italic'
   },
   text: {
     fontSize: 20
@@ -36,7 +47,7 @@ export default function Batter(props) {
     if (i === 3) {
       placeholder.push(
         <View key={i} style={styles.batters}>
-          <Text style={styles.text} >Select a player</Text>
+          <Text style={styles.placeholderText} >Select a player</Text>
         </View>
       );
     } else {
@@ -44,8 +55,8 @@ export default function Batter(props) {
     }
   }
   return (
+    <View style={styles.batter}>
     <TouchableHighlight
-      style={styles.order}
       onPress={() => props.navigate('PlayerPicker', { order: props.order })}
     >
       <View>
@@ -73,5 +84,6 @@ export default function Batter(props) {
         }
       </View>
     </TouchableHighlight>
+    </View>
   );
 }

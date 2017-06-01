@@ -1,4 +1,8 @@
-import { SELECT_PLAYER, REMOVE_PLAYER } from '../constants';
+import {
+  SELECT_PLAYER,
+  REMOVE_PLAYER,
+  RESET_DATA
+} from '../constants';
 
 const initialState = {
   home: {
@@ -40,6 +44,10 @@ export default function(state = initialState, action) {
           [action.order]: state[action.team][action.order].slice(0, action.index).concat(state[action.team][action.order].slice(action.index + 1))
         })
       });
+
+    case RESET_DATA:
+      return initialState;
+
     default:
       return state;
   }

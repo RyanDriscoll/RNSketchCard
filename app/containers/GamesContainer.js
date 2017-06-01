@@ -15,15 +15,17 @@ class GamesContainer extends Component {
     const games = this.props.games;
     const { navigate } = this.props.navigation;
     return (
-      <ScrollView>
+      <ScrollView style={{ marginTop: 20 }}>
         {!!games.length &&
           games.map(game => {
             return (
               <Game
                 game={game}
+                selectedGame={this.props.selectedGame}
                 key={game.gameId}
                 selectGame={this.props.selectGame}
                 getRosters={this.props.getRosters}
+                resetData={this.props.resetData}
                 navigate={navigate}
               />
             );
@@ -39,7 +41,8 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    games: state.games.games
+    games: state.games.games,
+    selectedGame: state.games.selectedGame
   };
 }
 

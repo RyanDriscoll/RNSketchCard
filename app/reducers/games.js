@@ -2,7 +2,8 @@ import {
   RECEIVE_GAMES,
   RECEIVE_ROSTERS,
   SELECT_GAME,
-  SELECT_TEAM
+  SELECT_TEAM,
+  RESET_DATA
 } from '../constants';
 
 const initialState = {
@@ -37,6 +38,15 @@ export default function (state = initialState, action) {
       return Object.assign({}, state, {
         selectedTeam: action.team
       });
+
+    case RESET_DATA:
+      return Object.assign({}, state, {
+        selectedGame: {},
+        selectedTeam: 'away',
+        homeRoster: [],
+        awayRoster: []
+      });
+
     default:
       return state;
   }

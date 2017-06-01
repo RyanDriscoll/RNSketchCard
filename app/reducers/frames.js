@@ -1,7 +1,8 @@
 import {
   ADD_IMAGE,
   UNDO_IMAGE,
-  UPDATE_INNING
+  UPDATE_INNING,
+  RESET_DATA
 } from '../constants';
 
 const initialState = {
@@ -54,6 +55,9 @@ export default function (state = initialState, action) {
           currentInning: action.inning
         });
       }
+
+    case RESET_DATA:
+      return initialState;
 
     default:
       return state;

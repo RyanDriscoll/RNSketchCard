@@ -6,12 +6,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    margin: 6,
+    backgroundColor: '#ffffff',
+    shadowColor: '#000000',
+    shadowOpacity: 0.3,
+    shadowOffset: {width: 0, height: 8},
+    shadowRadius: 6
   },
   button: {
     backgroundColor: 'blue',
     width: 50,
-    margin: 2,
-    borderRadius: 50
+    margin: 5
   }
 });
 
@@ -50,7 +55,7 @@ export default function InningControl(props) {
           title={'\u2190'}
         />
       </View>
-        <Text style={{ fontSize: 20 }}>{`${triangle} ${props.inning}`}</Text>
+      <Text style={{ fontSize: 25 }}>{`${triangle} ${props.inning}`}</Text>
       <View style={styles.button}>
         <Button
           color="#FFF"

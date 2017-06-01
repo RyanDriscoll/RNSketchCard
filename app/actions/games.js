@@ -4,7 +4,8 @@ import {
   RECEIVE_GAMES,
   RECEIVE_ROSTERS,
   SELECT_GAME,
-  SELECT_TEAM
+  SELECT_TEAM,
+  RESET_DATA
 } from '../constants';
 
 export const getGames = () => {
@@ -56,6 +57,14 @@ export const selectTeam = team => {
     dispatch({
       type: SELECT_TEAM,
       team
+    });
+  };
+};
+
+export const resetData = () => {
+  return dispatch => {
+    dispatch({
+      type: RESET_DATA
     });
   };
 };
