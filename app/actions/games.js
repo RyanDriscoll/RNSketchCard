@@ -10,7 +10,7 @@ import {
 export const getGames = () => {
   return dispatch => {
     return axios
-      .get('http://localhost:3001/api/games')
+      .get('https://mlbsketchcard.herokuapp.com/api/games')
       .then(res => res.data)
       .then(games => {
         dispatch({
@@ -26,8 +26,8 @@ export const getRosters = game => {
   return dispatch => {
     return axios
       .all([
-        axios.get(`http://localhost:3001/api/team/${game.homeId}`),
-        axios.get(`http://localhost:3001/api/team/${game.awayId}`)
+        axios.get(`https://mlbsketchcard.herokuapp.com/api/team/${game.homeId}`),
+        axios.get(`https://mlbsketchcard.herokuapp.com/api/team/${game.awayId}`)
       ])
       .then(
         axios.spread(function(home, away) {
